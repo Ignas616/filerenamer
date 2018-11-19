@@ -1,5 +1,7 @@
 package com.filerenamer;
 
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -48,7 +50,7 @@ public class ReadFiles {
                 if (file.isFile()) {
                     page++;
                     String formattedPageNumber = String.format("%02d", page);
-                    String fileExtension = file.getName().substring(file.getName().length() - 3);
+                    String fileExtension = FilenameUtils.getExtension(file.getName());
                     String newFilename = filenamePrefix + "_c" + chapterIndex +"_p"+ formattedPageNumber + SEPARATOR + fileExtension;
 
                     //System.out.println("reading file: " + file.getName());
