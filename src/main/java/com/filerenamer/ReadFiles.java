@@ -11,7 +11,7 @@ import java.util.Comparator;
 public class ReadFiles {
 
     private final static String SEPARATOR = ".";
-    private final static String CHAPTER_INDEX_REGEX = "[^\\d\\.]| \\.|\\.$";
+    private final static String CHAPTER_INDEX_REGEX = "[^\\d\\. ]| \\.|\\.$";
 
     public static void main(String[] args) throws Exception {
         readAll("C:\\eclipse-workspaces\\intelliJworkspace\\filerenamer\\test", "Renamed");
@@ -34,8 +34,10 @@ public class ReadFiles {
             for (File subdir : subdirArray) {
                 if (subdir.isDirectory()) {
                     String chapterIndexAsString = subdir.getName().replaceAll(CHAPTER_INDEX_REGEX,"");
+                    String[] splited = chapterIndexAsString.split("\\s+");
+
                     System.out.println("reading directory: " + subdir.getName());
-                    renameFiles(subdir, filenamePrefix, chapterIndexAsString);
+                    renameFiles(subdir, filenamePrefix, splited[splited.length-1]);
                 }
             }
         }
