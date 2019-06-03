@@ -5,7 +5,7 @@ public class Filerenamer {
     public static void main(String[] args) throws Exception {
         if(validate(args)) {
             ReadFiles readFiles = new ReadFiles();
-            readFiles.readAll(null, args[0]);
+            readFiles.readAll(args[0]);
         }
     }
 

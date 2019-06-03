@@ -1,29 +1,22 @@
 package com.filerenamer;
 
-import org.apache.commons.io.FilenameUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import static com.filerenamer.FileNameUtil.getChapterIndexAsString;
+import static com.filerenamer.FileNameUtil.getNewFileName;
+import static com.filerenamer.FileNameUtil.removeLetters;
+
 public class ReadFiles {
 
-    private final static String SEPARATOR = ".";
-    private final static String CHAPTER_INDEX_REGEX = "[^\\d\\. ]| \\.|\\.$";
 
-    public static void main(String[] args) throws Exception {
-        readAll("C:\\eclipse-workspaces\\intelliJworkspace\\filerenamer\\test", "Renamed");
-    }
-
-    static void readAll(String path, String filenamePrefix) throws Exception {
-        if (path == null) {
-            path = ".";
-        }
+    static void readAll(String filenamePrefix) throws Exception {
 
         ReadFiles rf = new ReadFiles();
-        File mainDirectory = new File(path);
+        File mainDirectory = new File( ".");
         rf.readSubdirs(mainDirectory, filenamePrefix);
     }
 
@@ -33,17 +26,19 @@ public class ReadFiles {
             Arrays.sort(subdirArray, Comparator.comparing(File::getName, new FilenameComparator()));
             for (File subdir : subdirArray) {
                 if (subdir.isDirectory()) {
-                    String chapterIndexAsString = subdir.getName().replaceAll(CHAPTER_INDEX_REGEX,"");
-                    String[] splited = chapterIndexAsString.split("\\s+");
-
+                    String chapterIndexAsDigits = removeLetters(subdir);
+                    String chapterIndex = getChapterIndexAsString(chapterIndexAsDigits);
                     System.out.println("reading directory: " + subdir.getName());
-                    renameFiles(subdir, filenamePrefix, splited[splited.length-1]);
+                    renameFiles(subdir, filenamePrefix, chapterIndex);
                 }
             }
         }
     }
 
-    private void renameFiles(File subdir, String filenamePrefix, String chapterIndex) throws IOException {
+
+
+
+    private static void renameFiles(File subdir, String filenamePrefix, String chapterIndex) throws IOException {
         File[] filesArray = subdir.listFiles();
         if (filesArray != null) {
             Arrays.sort(filesArray, Comparator.comparing(File::getName, new FilenameComparator()));
@@ -51,10 +46,7 @@ public class ReadFiles {
             for (File file : filesArray) {
                 if (file.isFile()) {
                     page++;
-                    String formattedPageNumber = String.format("%02d", page);
-                    String fileExtension = FilenameUtils.getExtension(file.getName());
-                    String newFilename = filenamePrefix + "_c" + chapterIndex +"_p"+ formattedPageNumber + SEPARATOR + fileExtension;
-
+                    String newFilename = getNewFileName(filenamePrefix, chapterIndex, page, file);
                     //System.out.println("reading file: " + file.getName());
 
                     File newFile = new File(file.getParent(), newFilename);
@@ -64,4 +56,6 @@ public class ReadFiles {
             }
         }
     }
+
+
 }
