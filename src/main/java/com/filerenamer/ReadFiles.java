@@ -10,7 +10,7 @@ import static com.filerenamer.FileNameUtil.getChapterIndexAsString;
 import static com.filerenamer.FileNameUtil.getNewFileName;
 import static com.filerenamer.FileNameUtil.removeLetters;
 
-public class ReadFiles {
+class ReadFiles {
 
 
     static void readAll(String filenamePrefix) throws Exception {
@@ -34,9 +34,6 @@ public class ReadFiles {
             }
         }
     }
-
-
-
 
     private static void renameFiles(File subdir, String filenamePrefix, String chapterIndex) throws IOException {
         File[] filesArray = subdir.listFiles();
