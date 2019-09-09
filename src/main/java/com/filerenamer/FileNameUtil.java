@@ -33,14 +33,16 @@ class FileNameUtil {
         String chapterIndexReturn = "";
 
         String[] splited = chapterIndexAsString.split("_");
+        int indexOrder = 0;
 
         for (String splitString : splited) {
-           if (StringUtils.isNotBlank(splitString)) {
+           if (StringUtils.isNotBlank(splitString) && indexOrder < 2) {
                if (isNumeric(splitString)) {
                    chapterIndexReturn = splitString;
                } else if (isNumeric(leaveOnlyDigits(splitString))) {
                    chapterIndexReturn = leaveOnlyDigits(splitString);
                }
+               indexOrder++;
            }
         }
 

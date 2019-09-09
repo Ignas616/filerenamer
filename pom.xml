@@ -62,7 +62,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Main-Class>com.filerenamer.Filerenamer</Main-Class>
+                            <Main-Class>com.filerenamer.FileRenamer</Main-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -84,7 +84,7 @@
                             <archive>
                                 <manifest>
                                     <addClasspath>true</addClasspath>
-                                    <mainClass>com.filerenamer.Filerenamer</mainClass>
+                                    <mainClass>com.filerenamer.FileRenamer</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

@@ -23,7 +23,7 @@ class ReadFiles {
     private void readSubdirs(File mainDirectory, String filenamePrefix) throws Exception {
         File[] subdirArray = mainDirectory.listFiles();
         if (subdirArray != null) {
-            Arrays.sort(subdirArray, Comparator.comparing(File::getName, new FilenameComparator()));
+            Arrays.sort(subdirArray, Comparator.comparing(File::getName, new FileNameComparator()));
             for (File subdir : subdirArray) {
                 if (subdir.isDirectory()) {
                     String chapterIndexAsDigits = removeLetters(subdir);
@@ -38,7 +38,7 @@ class ReadFiles {
     private static void renameFiles(File subdir, String filenamePrefix, String chapterIndex) throws IOException {
         File[] filesArray = subdir.listFiles();
         if (filesArray != null) {
-            Arrays.sort(filesArray, Comparator.comparing(File::getName, new FilenameComparator()));
+            Arrays.sort(filesArray, Comparator.comparing(File::getName, new FileNameComparator()));
             int page = 0;
             for (File file : filesArray) {
                 if (file.isFile()) {

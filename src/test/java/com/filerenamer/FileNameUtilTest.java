@@ -38,6 +38,7 @@ public class FileNameUtilTest {
                 {"Volume 1 chapter 44", "44"},
                 {"Volume21chapter41", "41"},
                 {"Volume61chapter61.5", "61e"},
+                {"Volume61chapter63.5 some random par 23", "63e"},
                 {"Volume3 chapter 46", "46"}
         });
     }
