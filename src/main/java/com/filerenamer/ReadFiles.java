@@ -10,10 +10,10 @@ import static com.filerenamer.FileNameUtil.getChapterIndexAsString;
 import static com.filerenamer.FileNameUtil.getNewFileName;
 import static com.filerenamer.FileNameUtil.removeLetters;
 
-class ReadFiles {
+public class ReadFiles {
 
 
-    static void readAll(String filenamePrefix) throws Exception {
+    public static void readAll(String filenamePrefix) throws Exception {
 
         ReadFiles rf = new ReadFiles();
         File mainDirectory = new File( ".");
