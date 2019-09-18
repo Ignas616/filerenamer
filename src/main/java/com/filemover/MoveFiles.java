@@ -5,10 +5,10 @@ import java.io.File;
 public class MoveFiles {
 
 
-    public static void moveAllFromSubDirs() throws Exception {
+    public static void moveAllFromSubDirs(File mainDirectory) throws Exception {
 
         MoveFiles rf = new MoveFiles();
-        File mainDirectory = new File( ".");
+
         rf.readSubdirs(mainDirectory);
     }
 

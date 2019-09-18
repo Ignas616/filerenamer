@@ -13,21 +13,23 @@ import static com.filerenamer.FileNameUtil.removeLetters;
 public class ReadFiles {
 
 
-    public static void readAll(String filenamePrefix) throws Exception {
+    public static void readAll(String filenamePrefix, int numIndex) throws Exception {
 
         ReadFiles rf = new ReadFiles();
         File mainDirectory = new File( ".");
-        rf.readSubdirs(mainDirectory, filenamePrefix);
+        rf.readSubdirs(mainDirectory, filenamePrefix, numIndex);
     }
 
-    private void readSubdirs(File mainDirectory, String filenamePrefix) throws Exception {
+
+
+    private void readSubdirs(File mainDirectory, String filenamePrefix, int numIndex) throws Exception {
         File[] subdirArray = mainDirectory.listFiles();
         if (subdirArray != null) {
             Arrays.sort(subdirArray, Comparator.comparing(File::getName, new FileNameComparator()));
             for (File subdir : subdirArray) {
                 if (subdir.isDirectory()) {
                     String chapterIndexAsDigits = removeLetters(subdir);
-                    String chapterIndex = getChapterIndexAsString(chapterIndexAsDigits);
+                    String chapterIndex = getChapterIndexAsString(chapterIndexAsDigits, numIndex);
                     System.out.println("reading directory: " + subdir.getName());
                     renameFiles(subdir, filenamePrefix, chapterIndex);
                 }

@@ -29,14 +29,14 @@ class FileNameUtil {
         return filenamePrefix + "_c" + chapterIndex +"_p"+ formattedPageNumber + SEPARATOR + fileExtension;
     }
 
-    static String getChapterIndexAsString(String chapterIndexAsString) {
+    static String getChapterIndexAsString(String chapterIndexAsString, int numIndex) {
         String chapterIndexReturn = "";
 
         String[] splited = chapterIndexAsString.split("_");
         int indexOrder = 0;
 
         for (String splitString : splited) {
-           if (StringUtils.isNotBlank(splitString) && indexOrder < 2) {
+           if (StringUtils.isNotBlank(splitString) && indexOrder < numIndex) {
                if (isNumeric(splitString)) {
                    chapterIndexReturn = splitString;
                } else if (isNumeric(leaveOnlyDigits(splitString))) {
