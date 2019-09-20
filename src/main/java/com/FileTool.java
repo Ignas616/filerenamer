@@ -19,12 +19,20 @@ public class FileTool {
         if (showChoice == 1) {
             MoveFiles.moveAllFromSubDirs(mainDirectory);
         } else if (showChoice == 2){
+            getFileName(args);
             ReadFiles.readAll(chapterName, 1);
-        } else {
+        } else if (showChoice == 0){
             getFileName(args);
             ReadFiles.readAll(chapterName, 2);
+        }   else {
+            exitProgram();
         }
         JOptionPane.showMessageDialog(null, "Done!");
+        exitProgram();
+    }
+
+    private static void exitProgram(){
+        System.exit(1);
     }
 
     private static int showChoice() {

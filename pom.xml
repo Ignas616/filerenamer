@@ -87,6 +87,8 @@
                                     <mainClass>com.FileTool</mainClass>
                                 </manifest>
                             </archive>
+                            <finalName>filetool</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
                 </executions>
