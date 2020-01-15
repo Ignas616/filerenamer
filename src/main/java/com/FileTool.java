@@ -11,33 +11,37 @@ import java.io.File;
 
 public class FileTool {
 
-    private static final String[] MAIN_OPTIONS = {"Move", "Rename 2nd num.", "Rename 1st num.", "Create Folder(s)"};
+    private static final String[] MAIN_OPTIONS = {"Move Pics Outside", "Rename 2nd num.", "Rename 1st num.", "Create Folders", "Copy"};
     private static final String[] FOLDER_OPTIONS = {"Create many folders", "Create 1 folder"};
 
     private static String chapterName;
 
     public static void main(String[] args) throws Exception {
 
-        File mainDirectory = new File( ".");
+        File mainDirectory = new File(".");
         int showChoice = showChoice();
         if (showChoice == 0) {
             MoveFiles.moveAllFromSubDirs(mainDirectory);
-        } else if (showChoice == 1){
+        } else if (showChoice == 1) {
             getFileName(args);
             ReadFiles.readAll(chapterName, 2);
-        } else if (showChoice == 2){
+        } else if (showChoice == 2) {
             getFileName(args);
             ReadFiles.readAll(chapterName, 1);
-        } else if (showChoice == 3){
+        } else if (showChoice == 3) {
             showFolderCreationChoice();
-        } else {
+        } else if (showChoice == 4) {
+            MoveFiles.copyJarToVolumeFolders(mainDirectory);
+        }
+
+        else {
             exitProgram();
         }
         JOptionPane.showMessageDialog(null, "Done!");
         exitProgram();
     }
 
-    private static void exitProgram(){
+    private static void exitProgram() {
         System.exit(1);
     }
 
@@ -48,32 +52,22 @@ public class FileTool {
     }
 
     private static void showFolderCreationChoice() {
-        int folderChoice = JOptionPane.showOptionDialog(null, "Select Action: create many folders or create 1 folder",
-                "Select Action", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, FOLDER_OPTIONS, FOLDER_OPTIONS[0]);
+        int numberOfFolders = getNumberOfFolders();
 
-        int numberOfFolders = getNumberOfFolders(folderChoice);
-
-
-        if (folderChoice == 0 && numberOfFolders >0 ) {
+        if (numberOfFolders > 0) {
             CreateFolder.createManyFolders(numberOfFolders);
-        } else if (folderChoice == 1 && numberOfFolders >0 ){
-            CreateFolder.createFolder(numberOfFolders);
+        } else {
+            JOptionPane.showConfirmDialog(null, "Cant create folder of quantity: " + numberOfFolders);
         }
 
     }
 
-    private static int getNumberOfFolders(int folderChoice) {
-        String numberOfFolders = null;
-        if (folderChoice == 0) {
-            numberOfFolders = JOptionPane.showInputDialog("Write number of folders: ");
-        }
+    private static int getNumberOfFolders() {
+        String numberOfFolders = JOptionPane.showInputDialog("Write number of folders: ");
 
-        if (folderChoice == 1) {
-            numberOfFolders = JOptionPane.showInputDialog("Write folder number: ");
-        }
         try {
             return Integer.valueOf(numberOfFolders);
-        } catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, "Error happened so nothing was created");
             return -1;
         }
