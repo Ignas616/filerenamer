@@ -36,7 +36,7 @@ class FileNameUtil {
         int indexOrder = 0;
 
         for (String splitString : splited) {
-           if (StringUtils.isNotBlank(splitString) && indexOrder < numIndex) {
+           if (StringUtils.isNotBlank(splitString) && indexOrder < numIndex && !StringUtils.equalsIgnoreCase(splitString, ".")) {
                if (isNumeric(splitString)) {
                    chapterIndexReturn = splitString;
                } else if (isNumeric(leaveOnlyDigits(splitString))) {
