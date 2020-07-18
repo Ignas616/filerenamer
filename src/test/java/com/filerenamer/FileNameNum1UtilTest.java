@@ -15,7 +15,7 @@ import static com.filerenamer.FileNameUtil.leaveOnlyDigitsAndDot;
 @RunWith(value = Parameterized.class)
 public class FileNameNum1UtilTest {
 
-    @Parameter(value = 0)
+    @Parameter()
     public String input;
     @Parameter(value = 1)
     public String expected;
@@ -30,7 +30,7 @@ public class FileNameNum1UtilTest {
 
 
     @Test
-    public void getChapterIndexAsStringTest() throws Exception {
+    public void getChapterIndexAsStringTest() {
         String chapterIndexAsString = getChapterIndexAsString(leaveOnlyDigitsAndDot(input), 1);
         Assert.assertEquals(expected, chapterIndexAsString);
     }
