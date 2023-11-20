@@ -3,6 +3,7 @@ package com;
 import com.filemover.MoveFiles;
 import com.filerenamer.ReadFiles;
 import com.foldercreator.CreateFolder;
+import com.imagemerger.MergeImages;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -11,8 +12,7 @@ import java.io.File;
 
 public class FileTool {
 
-    private static final String[] MAIN_OPTIONS = {"Move Pics Outside", "Rename 2nd num.", "Rename 1st num.", "Create Folders", "Copy"};
-    private static final String[] FOLDER_OPTIONS = {"Create many folders", "Create 1 folder"};
+    private static final String[] MAIN_OPTIONS = {"Move Pics Outside", "Rename", "Merge", "Create Folders", "Copy"};
 
     private static String chapterName;
 
@@ -27,7 +27,7 @@ public class FileTool {
             ReadFiles.readAll(chapterName, 2);
         } else if (showChoice == 2) {
             getFileName(args);
-            ReadFiles.readAll(chapterName, 1);
+            MergeImages.mergeImages(chapterName);
         } else if (showChoice == 3) {
             showFolderCreationChoice();
         } else if (showChoice == 4) {
@@ -66,7 +66,7 @@ public class FileTool {
         String numberOfFolders = JOptionPane.showInputDialog("Write number of folders: ");
 
         try {
-            return Integer.valueOf(numberOfFolders);
+            return Integer.parseInt(numberOfFolders);
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, "Error happened so nothing was created");
             return -1;
