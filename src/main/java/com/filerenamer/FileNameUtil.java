@@ -55,7 +55,9 @@ public class FileNameUtil {
     }
 
     private static String removeDotsFromPrefix(String line){
-        return line.replaceFirst("\\.", "");
+        if (line.charAt(0) == '.'){
+            return line.replaceFirst("\\.", "");
+        } else return line;
     }
 
     private static String replaceDecimalWithLetters(String string){
