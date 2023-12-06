@@ -18,7 +18,7 @@ import static com.filerenamer.FileNameUtil.removeLetters;
 public class MergeImages {
 
     String[] postfix = {"", "a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","x","y","z"};
-    private static final int MAX_HEIGHT = 20000;
+    private static final int MAX_HEIGHT = 30000;
 
     String chapterNumber = "";
     int postfixCount = 0;
