@@ -48,6 +48,7 @@ public class MergeImages {
         dir = mainDirectory; // replace with your directory
         File[] files = dir.listFiles();
         if (files != null && files.length > 0) {
+            Arrays.sort(files, Comparator.comparing(File::getName, new FileNameComparator()));
             try {
                 // Read in all images
                 BufferedImage[] images = new BufferedImage[files.length];
