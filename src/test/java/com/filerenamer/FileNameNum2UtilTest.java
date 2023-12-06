@@ -30,6 +30,7 @@ public class FileNameNum2UtilTest {
                 {"..25..", "25"},
                 {"23.1", "23a"},
                 {"23.2", "23b"},
+                {"Ch.23.2", "23b"},
                 {"ch 23.3", "23c"},
                 {"cg23.4", "23d"},
                 {"sdf 23.6 sdf df -gf", "23f"},

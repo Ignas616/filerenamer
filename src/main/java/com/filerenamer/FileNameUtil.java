@@ -6,12 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 
 
-class FileNameUtil {
+public class FileNameUtil {
 
     private final static String SEPARATOR = ".";
     private final static String CHAPTER_INDEX_REGEX = "[^\\d.]| \\.|\\.$";
 
-    static String removeLetters(File subdir) {
+    public static String removeLetters(File subdir) {
         return leaveOnlyDigitsAndDot(subdir.getName());
     }
 
@@ -29,7 +29,7 @@ class FileNameUtil {
         return filenamePrefix + "_c" + chapterIndex +"_p"+ formattedPageNumber + SEPARATOR + fileExtension;
     }
 
-    static String getChapterIndexAsString(String chapterIndexAsString, int numIndex) {
+    public static String getChapterIndexAsString(String chapterIndexAsString, int numIndex) {
         String chapterIndexReturn = "";
 
         String[] splited = chapterIndexAsString.split("_");
@@ -37,6 +37,7 @@ class FileNameUtil {
 
         for (String splitString : splited) {
            if (StringUtils.isNotBlank(splitString) && indexOrder < numIndex && !StringUtils.equalsIgnoreCase(splitString, ".")) {
+               splitString = removeDotsFromPrefix(splitString);
                if (isNumeric(splitString)) {
                    chapterIndexReturn = splitString;
                } else if (isNumeric(leaveOnlyDigits(splitString))) {
@@ -48,7 +49,13 @@ class FileNameUtil {
 
 
 
+
+
         return replaceDecimalWithLetters(chapterIndexReturn);
+    }
+
+    private static String removeDotsFromPrefix(String line){
+        return line.replaceFirst("\\.", "");
     }
 
     private static String replaceDecimalWithLetters(String string){

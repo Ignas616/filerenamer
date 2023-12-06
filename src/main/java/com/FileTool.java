@@ -12,13 +12,14 @@ import java.io.File;
 
 public class FileTool {
 
-    private static final String[] MAIN_OPTIONS = {"Move Pics Outside", "Rename", "Merge", "Create Folders", "Copy"};
+    private static final String[] MAIN_OPTIONS = {"Move Outside", "Rename", "Merge", "Merge All", "Create Folders", "Copy"};
 
     private static String chapterName;
 
     public static void main(String[] args) throws Exception {
 
         File mainDirectory = new File(".");
+        //File mainDirectory = new File("c:\\temp");
         int showChoice = showChoice();
         if (showChoice == 0) {
             MoveFiles.moveAllFromSubDirs(mainDirectory);
@@ -27,10 +28,12 @@ public class FileTool {
             ReadFiles.readAll(chapterName, 2);
         } else if (showChoice == 2) {
             getFileName(args);
-            MergeImages.mergeImages(chapterName);
+            new MergeImages().mergeImages(chapterName, mainDirectory);
         } else if (showChoice == 3) {
-            showFolderCreationChoice();
+            new MergeImages().mergeAll(mainDirectory);
         } else if (showChoice == 4) {
+            showFolderCreationChoice();
+        } else if (showChoice == 5) {
             MoveFiles.copyJarToVolumeFolders(mainDirectory);
         }
 
