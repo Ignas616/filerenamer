@@ -12,7 +12,7 @@ import java.io.File;
 
 public class FileTool {
 
-    private static final String[] MAIN_OPTIONS = {"Move Outside", "Rename", "Merge", "Merge All", "Create Folders", "Copy"};
+    private static final String[] MAIN_OPTIONS = {"Move Outside", "Rename", "Merge", "Merge All", "Create Folders"};
 
     private static String chapterName;
 
@@ -33,10 +33,8 @@ public class FileTool {
             new MergeImages().mergeAll(mainDirectory);
         } else if (showChoice == 4) {
             showFolderCreationChoice();
-        } else if (showChoice == 5) {
             MoveFiles.copyJarToVolumeFolders(mainDirectory);
         }
-
         else {
             exitProgram();
         }

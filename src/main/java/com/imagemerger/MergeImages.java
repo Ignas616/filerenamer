@@ -18,6 +18,7 @@ import static com.filerenamer.FileNameUtil.removeLetters;
 public class MergeImages {
 
     String[] postfix = {"", "a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","x","y","z"};
+    private static final int MAX_HEIGHT = 20000;
 
     String chapterNumber = "";
     int postfixCount = 0;
@@ -86,7 +87,8 @@ public class MergeImages {
         int width = Math.max(img1.getWidth(), img2.getWidth());
         int height = img1.getHeight() + img2.getHeight();
 
-        if (height> 65500){
+
+        if (height> MAX_HEIGHT){
             postfixCount++;
             SaveAsNewImage(chapterNumber+postfix[postfixCount], img1);
             return img2;
